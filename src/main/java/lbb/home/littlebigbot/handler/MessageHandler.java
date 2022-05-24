@@ -14,22 +14,28 @@ public class MessageHandler {
         this.weatherParser = weatherParser;
     }
     public BotApiMethod<?> handle(Message message) {
+
         long chatId = message.getChatId();
         String text = message.getText();
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(String.valueOf(chatId));
-        switch (text) {
-            case "/start":
-                sendMessage.setText("Input city name to get the weather.");
-                break;
-            case "/help":
-                sendMessage.setText("City name format: Wroclaw / London");
-                break;
-            default:
-                sendMessage.setText(weatherParser.parseForecast(text));
-                break;
+        if (message.hasAnimation()) {
+            sendMessage.setText("Animations are not allowed");
+        } else {
+            switch (text) {
+                case "/start":
+                    sendMessage.setText("Input city name to get the weather.");
+                    break;
+                case "/help":
+                    sendMessage.setText("City name format: Wroclaw / London");
+                    break;
+                default:
+                    sendMessage.setText(weatherParser.parseForecast(text));
+                    break;
 
+            }
         }
+
         return sendMessage;
     }
 }
