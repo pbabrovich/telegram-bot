@@ -16,12 +16,10 @@ public class MessageHandler {
     public BotApiMethod<?> handle(Message message) {
 
         long chatId = message.getChatId();
-        String text = message.getText();
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(String.valueOf(chatId));
-        if (message.hasAnimation()) {
-            sendMessage.setText("Animations are not allowed");
-        } else {
+        if (message.hasText()) {
+            String text = message.getText();
             switch (text) {
                 case "/start":
                     sendMessage.setText("Input city name to get the weather.");
@@ -34,7 +32,8 @@ public class MessageHandler {
                     break;
 
             }
-        }
+        } else
+            sendMessage.setText("Use /help to get information");
 
         return sendMessage;
     }
