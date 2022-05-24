@@ -1,15 +1,12 @@
 package lbb.home.littlebigbot.model;
 
-import lbb.home.littlebigbot.model.TelegramFacade;
+import lbb.home.littlebigbot.parser.WeatherParser;
 import lombok.Getter;
 import lombok.Setter;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
-import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.starter.SpringWebhookBot;
 
 @Getter
@@ -20,6 +17,7 @@ public class LittleBigBot extends SpringWebhookBot {
     private String botUserName;
 
     private TelegramFacade telegramFacade;
+    private WeatherParser weatherParser;
 
     public LittleBigBot(TelegramFacade telegramFacade, DefaultBotOptions botOptions, SetWebhook setWebhook) {
         super(botOptions, setWebhook);

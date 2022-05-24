@@ -27,7 +27,6 @@ public class AppConfig {
         littleBigBot.setWebHookPath(littleBigBotConfig.getWebHookPath());
 
 
-
-        return  littleBigBot;
+        return littleBigBot;
     }
 }
